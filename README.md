@@ -5,7 +5,7 @@ Stefan Domingo\
 Ewan Escano\
 Martin Gamilla\
 Frederick Garcia\
-Hans Gutierrez
+Hanz Gutierrez
 
 ## Topic Theme
 A deep dive discussion of the USB-C protocol and how it works to interface with many common I/O
