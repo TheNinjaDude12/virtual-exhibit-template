@@ -38,4 +38,8 @@ Mechanic: A standard four-option layout testing deeper concepts like power deliv
 Mechanic: Users will evaluate common misconceptions about USB architecture. For example, assessing statements like, "You can tell a port's USB-C generation based solely on its physical look." The UI will utilize immediate visual indicators (green and red bounding boxes) upon selection.\
 **Purpose**: This serves as a quick knowledge check to clear up consumer-level misunderstandings about the physical port versus the underlying protocol standards.
 
-[Tentative Style Guide Snapshot](https://canva.link/vfxhktf8hppcsnw)
+## Tentative Style Guide Snapshot
+(snapshot_images\snapshot_image.png)
+(snapshot_images\snapshot_image(1).png)
+(snapshot_images\snapshot_image(2).png)
+(snapshot_images\snapshot_image(3).png)
