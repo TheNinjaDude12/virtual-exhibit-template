@@ -39,7 +39,7 @@ Mechanic: Users will evaluate common misconceptions about USB architecture. For 
 **Purpose**: This serves as a quick knowledge check to clear up consumer-level misunderstandings about the physical port versus the underlying protocol standards.
 
 ## Tentative Style Guide Snapshot
-(snapshot_images\snapshot_image.png)
-(snapshot_images\snapshot_image(1).png)
-(snapshot_images\snapshot_image(2).png)
-(snapshot_images\snapshot_image(3).png)
+![Quiz Format Visualization](snapshot_images\snapshot_image.png)
+![Information Visualization](snapshot_images\snapshot_image(1).png)
+![Information Page Sample](snapshot_images\snapshot_image(2).png)
+![Quiz Type Visualization](snapshot_images\snapshot_image(3).png)
