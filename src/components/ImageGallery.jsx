@@ -47,7 +47,12 @@
 
 import { useState, useEffect } from "react";
 
-export default function ImageGallery({ photos = [] }) {
+export default function ImageGallery({
+  photos = [],
+  objectFit = "cover",
+  aspectRatio = "16 / 10",
+  stageBackground = "#f1efe8",
+}) {
   // `current` is the index of the photo on screen. It starts at 0 (the first photo).
   // `setCurrent` is the only way to change it -- React re-renders whenever we call it.
   const [current, setCurrent] = useState(0);
@@ -113,10 +118,20 @@ export default function ImageGallery({ photos = [] }) {
                   style={styles.imgLink}
                   aria-label={`Visit the ${p.title} website`}
                 >
-                  <img src={p.img} alt={p.title} style={styles.img} loading="lazy" />
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    style={{ ...styles.img, objectFit }}
+                    loading="lazy"
+                  />
                 </a>
               ) : (
-                <img src={p.img} alt={p.title} style={styles.img} loading="lazy" />
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  style={{ ...styles.img, objectFit }}
+                  loading="lazy"
+                />
               )}
             </div>
           ))}
@@ -156,6 +171,9 @@ export default function ImageGallery({ photos = [] }) {
           <div style={styles.captionMeta}>
             {photo.author} / {photo.year}
           </div>
+          {photo.desc && (
+            <p style={styles.captionDesc}>{photo.desc}</p>
+          )}
         </div>
       </div>
 
@@ -272,6 +290,12 @@ const styles = {
   captionMeta: {
     fontSize: 13,
     color: "#666",
+  },
+  captionDesc: {
+    fontSize: 14,
+    lineHeight: 1.6,
+    color: "#333",
+    marginTop: 8,
   },
   dots: {
     display: "flex",

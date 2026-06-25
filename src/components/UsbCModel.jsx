@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 export default function UsbCModel() {
   const mountRef = useRef(null);
@@ -20,23 +20,23 @@ export default function UsbCModel() {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x1a1a22);
 
-    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
-    camera.position.set(0, 0, 7);
+    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100)
     camera.lookAt(0, 0, 0);
 
     // Doubled the base ambient light
-    scene.add(new THREE.AmbientLight(0xffffff, 3.0)); 
+    scene.add(new THREE.AmbientLight(0xffffff, 3.0));;
+    camera.position.set(0, 0, 7);
 
     // Cranked up the key light for strong metallic highlights
     const key = new THREE.DirectionalLight(0xfff8f0, 6.0);
     key.position.set(5, 8, 6);
     scene.add(key);
-    
+
     // Boosted the fill light to brighten the shadows
     const fill = new THREE.DirectionalLight(0xd0e8ff, 3.5);
     fill.position.set(-6, 2, 4);
     scene.add(fill);
-    
+
     // Increased the rim light to separate the dark metal from the background
     const rim = new THREE.DirectionalLight(0xffffff, 2.5);
     rim.position.set(0, -4, -6);

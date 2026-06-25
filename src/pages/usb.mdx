@@ -5,7 +5,7 @@ author: "Domingo, Stefan; Escano, Ewan; Gamilla, Martin; Garcia, Frederick; Guti
 readingTime: "67 minutes"
 ---
 
- {/* We import various Astro and React components */}
+{/* We import various Astro and React components */}
 
 import TextWithImage from "../components/TextWithImage.astro"
 import UsbCModel from "../components/UsbCModel.jsx"
@@ -17,111 +17,53 @@ import DistroQuiz from "../components/DistroQuiz.jsx"
 
 {/* Images have to be imported manually */}
 
-import cachyos from "../assets/CachyOS.png"
-import debian from "../assets/Debian.png"
-import endeavour from "../assets/Endeavour.png"
-import fedora from "../assets/Fedora.png"
-import manjaro from "../assets/Manjaro.png"
-import mint from "../assets/Mint.png"
-import mxlinux from "../assets/MX-Linux.png"
-import popos from "../assets/PopOS.png"
-import ubuntu from "../assets/Ubuntu.png"
-import zorin from "../assets/Zorin.png"
-
-import tux from "../assets/Tux.png"
+import usbA from "../assets/usb-a.jpg"
+import usbB from "../assets/usb-b.jpg"
+import usbMicro from "../assets/usb-micro.jpeg"
+import usbC from "../assets/usb-c.jpg"
 
 {/* Used for the ImageGallery component */}
 
-export const photos = [
+export const usbPhotos = [
   {
     id: 1,
-    title: "Debian",
-    tagline: "The universal operating system",
-    author: "Ian Murdock",
-    year: 1993,
-    img: debian.src,
-    url: "https://www.debian.org",
+    title: "USB Type-A",
+    tagline: "The legacy standard host connector",
+    author: "USB Implementers Forum",
+    year: 1996,
+    img: usbA.src,
+    url: "https://en.wikipedia.org/wiki/USB_hardware#USB_A-type",
+    desc: "The classic rectangular USB connector found on almost all host computers and charging bricks. It has a flat, non-reversible shape, operates primarily on USB 2.0/3.0 standards, and holds up to 9 pins (for SuperSpeed).",
   },
   {
     id: 2,
-    title: "Fedora",
-    tagline: "Freedom. Friends. Features. First.",
-    author: "Fedora Project (Red Hat)",
-    year: 2003,
-    img: fedora.src,
-    url: "https://fedoraproject.org",
+    title: "USB Type-B",
+    tagline: "The classic peripheral connector",
+    author: "USB Implementers Forum",
+    year: 1996,
+    img: usbB.src,
+    url: "https://en.wikipedia.org/wiki/USB_hardware#USB_B-type",
+    desc: "A square-like connector with bevelled top corners, typically used for larger peripherals like printers, scanners, and external desktop hard drives. Non-reversible and designed to prevent connecting host-to-host.",
   },
   {
     id: 3,
-    title: "Ubuntu",
-    tagline: "Linux for human beings",
-    author: "Canonical Ltd.",
-    year: 2004,
-    img: ubuntu.src,
-    url: "https://ubuntu.com",
+    title: "Micro-USB",
+    tagline: "The compact legacy mobile standard",
+    author: "USB Implementers Forum",
+    year: 2007,
+    img: usbMicro.src,
+    url: "https://en.wikipedia.org/wiki/USB_hardware#Micro-USB",
+    desc: "A small, trapezoidal connector with latching hooks once dominant on smartphones, e-readers, and small portable accessories. It has 5 pins, is non-reversible, and usually caps at USB 2.0 (480 Mbps) speeds.",
   },
   {
     id: 4,
-    title: "Linux Mint",
-    tagline: "From freedom came elegance",
-    author: "Clément Lefèbvre",
-    year: 2006,
-    img: mint.src,
-    url: "https://linuxmint.com",
-  },
-  {
-    id: 5,
-    title: "Zorin OS",
-    tagline: "Make your computer better",
-    author: "Artyom & Kyrill Zorin",
-    year: 2009,
-    img: zorin.src,
-    url: "https://zorin.com/os/",
-  },
-  {
-    id: 6,
-    title: "Manjaro",
-    tagline: "Enjoy the simplicity",
-    author: "Manjaro GmbH & Co. KG",
-    year: 2011,
-    img: manjaro.src,
-    url: "https://manjaro.org",
-  },
-  {
-    id: 7,
-    title: "MX Linux",
-    tagline: "Simple, stable, and lightweight",
-    author: "antiX & former MEPIS communities",
+    title: "USB Type-C",
+    tagline: "The modern, universal, reversible standard",
+    author: "USB Implementers Forum",
     year: 2014,
-    img: mxlinux.src,
-    url: "https://mxlinux.org",
-  },
-  {
-    id: 8,
-    title: "Pop!_OS",
-    tagline: "You're in Control",
-    author: "System76",
-    year: 2017,
-    img: popos.src,
-    url: "https://pop.system76.com",
-  },
-  {
-    id: 9,
-    title: "EndeavourOS",
-    tagline: "Start your Endeavour",
-    author: "EndeavourOS Team",
-    year: 2019,
-    img: endeavour.src,
-    url: "https://endeavouros.com",
-  },
-  {
-    id: 10,
-    title: "CachyOS",
-    tagline: "Performance-First Linux",
-    author: "Peter Jung",
-    year: 2021,
-    img: cachyos.src,
-    url: "https://cachyos.org",
+    img: usbC.src,
+    url: "https://en.wikipedia.org/wiki/USB-C",
+    desc: "A slim, symmetrical, 24-pin connector designed to replace all legacy USB connectors. It is fully reversible, supports high-speed data protocols up to USB4 (80+ Gbps), handles up to 240W of Power Delivery, and carries video (DisplayPort/HDMI) via Alt Modes.",
   },
 ];
 
@@ -141,25 +83,23 @@ export const photos = [
   </div>
 </div>
 
+## USB Connector Types
+
+To understand the improvements introduced by USB-C, it is important to first compare the design, pin layouts, and usage of legacy USB connectors. Use the gallery below to explore the characteristics of each major USB physical interface.
+
+<ImageGallery
+  photos={usbPhotos}
+  objectFit="contain"
+  aspectRatio="16 / 10"
+  stageBackground="#1a1a22"
+  client:load
+/>
+
 ## USB-C Pin Diagram
+
+Hover over the pins on the interactive diagram below to view their designation and functional description:
+
 <UsbCPinDiagram imageSrc={pinDiagram.src} client:load />
-
-
-
-## Distro Chooser
-
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
-
-<DistroQuiz client:load />
-
-*(This \<DistroQuiz> is an example of a slightly more involved React component.)*
-
-Note that we expect a more involved output -- a real submission on Linux distros could, for example:
-
-- elaborate on each distro
-- highlight the differences between the distros' package managers and their commands
-- implement a terminal emulator sandbox that lets you input basic commands
-- implement something that shows the differences between a fixed-release and rolling-release model
 
 ## References
 
