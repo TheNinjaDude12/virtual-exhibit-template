@@ -94,7 +94,7 @@ export default function ImageGallery({
   return (
     <div style={styles.root}>
       {/* Stage: the framed area that holds the sliding images */}
-      <div style={styles.stage}>
+      <div style={{ ...styles.stage, background: stageBackground, aspectRatio }}>
         {/* All photos sit in one horizontal strip. We slide the whole strip
             sideways with translateX so only the "current" photo is visible.
             Moving by `current * 100`% shifts it one full image width per step. */}
@@ -107,7 +107,24 @@ export default function ImageGallery({
           {/* .map() turns each photo object into a slide. The `key` prop (p.id)
               helps React tell the slides apart efficiently. */}
           {photos.map((p) => (
-            <div key={p.id} style={styles.slide}>
+            <div key={p.id} style={{ ...styles.slide, position: "relative" }}>
+              {/* Blurred background image to fill the canvas */}
+              <img
+                src={p.img}
+                alt=""
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: "blur(18px) brightness(0.4)",
+                  zIndex: 0,
+                  pointerEvents: "none"
+                }}
+              />
+
               {/* If the photo has a url, wrap the image in a link; otherwise show
                   the image on its own. This is a ternary: condition ? a : b */}
               {p.url ? (
@@ -115,7 +132,7 @@ export default function ImageGallery({
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={styles.imgLink}
+                  style={{ ...styles.imgLink, position: "relative", zIndex: 1 }}
                   aria-label={`Visit the ${p.title} website`}
                 >
                   <img
@@ -129,7 +146,7 @@ export default function ImageGallery({
                 <img
                   src={p.img}
                   alt={p.title}
-                  style={{ ...styles.img, objectFit }}
+                  style={{ ...styles.img, objectFit, position: "relative", zIndex: 1 }}
                   loading="lazy"
                 />
               )}
