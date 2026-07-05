@@ -7,4 +7,13 @@ export default defineConfig({
   integrations: [mdx(), react(), icon()],
   site: 'https://virtual-exhibit-template.onrender.com',
   base: '/',
+  outDir: './dist',
+  vite: {
+    assetsInclude: ['**/*.glb'],
+    server: {
+      headers: {
+        '*.css': { 'Content-Type': 'text/css' },
+      },
+    },
+  },
 });
