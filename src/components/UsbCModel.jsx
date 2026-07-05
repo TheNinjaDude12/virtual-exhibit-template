@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three-stdlib";
 
-export default function UsbCModel() {
+export default function UsbCModel({ modelSrc }) {
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function UsbCModel() {
     renderer.setSize(W, H);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 2.5; // Increased from 1.0
+    renderer.toneMappingExposure = 1.0;
     el.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
@@ -24,21 +24,14 @@ export default function UsbCModel() {
     camera.position.set(0, 0, 7);
     camera.lookAt(0, 0, 0);
 
-    // Doubled the base ambient light
-    scene.add(new THREE.AmbientLight(0xffffff, 3.0)); 
-
-    // Cranked up the key light for strong metallic highlights
-    const key = new THREE.DirectionalLight(0xfff8f0, 6.0);
+    scene.add(new THREE.AmbientLight(0xffffff, 1.5));
+    const key = new THREE.DirectionalLight(0xfff8f0, 2.0);
     key.position.set(5, 8, 6);
     scene.add(key);
-    
-    // Boosted the fill light to brighten the shadows
-    const fill = new THREE.DirectionalLight(0xd0e8ff, 3.5);
+    const fill = new THREE.DirectionalLight(0xd0e8ff, 1.0);
     fill.position.set(-6, 2, 4);
     scene.add(fill);
-    
-    // Increased the rim light to separate the dark metal from the background
-    const rim = new THREE.DirectionalLight(0xffffff, 2.5);
+    const rim = new THREE.DirectionalLight(0xffffff, 0.8);
     rim.position.set(0, -4, -6);
     scene.add(rim);
 
@@ -46,20 +39,23 @@ export default function UsbCModel() {
     scene.add(pivot);
     let ready = false;
 
+    // resolve src — handles string or Astro image object
+    const src = typeof modelSrc === "string"
+      ? modelSrc
+      : (modelSrc?.src ?? modelSrc?.href ?? String(modelSrc));
+
     const loader = new GLTFLoader();
     loader.load(
-      "/src/assets/usb_type-c.glb",
+      src,
       (gltf) => {
         const model = gltf.scene;
 
-        // measure, center, scale
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         model.position.sub(center);
         model.scale.setScalar(4.5 / Math.max(size.x, size.y, size.z));
 
-        // re-measure after scale to fine-tune vertical centering
         const box2 = new THREE.Box3().setFromObject(model);
         const center2 = box2.getCenter(new THREE.Vector3());
         model.position.y -= center2.y;
