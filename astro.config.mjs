@@ -10,5 +10,10 @@ export default defineConfig({
   outDir: './dist',
   vite: {
     assetsInclude: ['**/*.glb'],
+    server: {
+      headers: {
+        '*.css': { 'Content-Type': 'text/css' },
+      },
+    },
   },
 });
