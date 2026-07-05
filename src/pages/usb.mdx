@@ -10,10 +10,10 @@ readingTime: "67 minutes"
 import TextWithImage from "../components/TextWithImage.astro"
 import UsbCModel from "../components/UsbCModel.jsx"
 import pinDiagram from "../assets/usbc-pin-diagram.png"
-
 import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
 import DistroQuiz from "../components/DistroQuiz.jsx"
+import UsbDragQuiz from "../components/UsbDragQuiz.jsx"
 
 {/* Images have to be imported manually */}
 
@@ -27,8 +27,12 @@ import mxlinux from "../assets/MX-Linux.png"
 import popos from "../assets/PopOS.png"
 import ubuntu from "../assets/Ubuntu.png"
 import zorin from "../assets/Zorin.png"
-
 import tux from "../assets/Tux.png"
+
+import usbA from "../assets/usbA.png"
+import usbB from "../assets/usbB.png"
+import usbC from "../assets/usbC.png"
+import microUsb from "../assets/microUsb.png"
 
 {/* Used for the ImageGallery component */}
 
@@ -144,22 +148,17 @@ export const photos = [
 ## USB-C Pin Diagram
 <UsbCPinDiagram imageSrc={pinDiagram.src} client:load />
 
-
-
 ## Distro Chooser
 
 Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
 
 <DistroQuiz client:load />
 
-*(This \<DistroQuiz> is an example of a slightly more involved React component.)*
+## USB Type Quiz
 
-Note that we expect a more involved output -- a real submission on Linux distros could, for example:
+Think you know your USB connectors? Drag each description to the correct USB type!
 
-- elaborate on each distro
-- highlight the differences between the distros' package managers and their commands
-- implement a terminal emulator sandbox that lets you input basic commands
-- implement something that shows the differences between a fixed-release and rolling-release model
+<UsbDragQuiz images={{ usbA, usbB, usbC, microUsb }} client:load />
 
 ## References
 
