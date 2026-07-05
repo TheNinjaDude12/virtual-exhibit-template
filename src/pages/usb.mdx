@@ -12,6 +12,7 @@ import UsbCModel from "../components/UsbCModel.jsx"
 import pinDiagram from "../assets/usbc-pin-diagram.png"
 import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
+import PinQuiz from "../components/PinQuiz.jsx"
 import DistroQuiz from "../components/DistroQuiz.jsx"
 import UsbDragQuiz from "../components/UsbDragQuiz.jsx"
 
@@ -148,11 +149,11 @@ export const photos = [
 ## USB-C Pin Diagram
 <UsbCPinDiagram imageSrc={pinDiagram.src} client:load />
 
-## Distro Chooser
+## Knowledge Check
 
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
+Now time to test your knowledge! We have prepared a comprehensive quiz about everything you've just read, enjoy!
 
-<DistroQuiz client:load />
+<PinQuiz client:load />
 
 ## USB Type Quiz
 
