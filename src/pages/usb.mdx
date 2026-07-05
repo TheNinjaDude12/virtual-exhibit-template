@@ -14,6 +14,7 @@ import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
 import DistroQuiz from "../components/DistroQuiz.jsx"
 import UsbDragQuiz from "../components/UsbDragQuiz.jsx"
+import UsbTrueOrFalseQuiz from "../components/UsbTrueOrFalseQuiz.jsx"
 
 {/* Images have to be imported manually */}
 
@@ -159,6 +160,14 @@ Want to see which distro fits you the best? If you're new to Linux or are thinki
 Think you know your USB connectors? Drag each description to the correct USB type!
 
 <UsbDragQuiz images={{ usbA, usbB, usbC, microUsb }} client:load />
+
+## USB True or False Quiz
+
+Test to see if you can determine the real or fake information about USB-C's. Click either true or false for each question!
+
+<UsbTrueOrFalseQuiz images={{}} client:load />
+
+
 
 ## References
 
