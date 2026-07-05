@@ -13,7 +13,7 @@ import pinDiagram from "../assets/usbc-pin-diagram.png"
 
 import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
-import DistroQuiz from "../components/DistroQuiz.jsx"
+import PinQuiz from "../components/PinQuiz.jsx"
 
 {/* Images have to be imported manually */}
 
@@ -146,20 +146,11 @@ export const photos = [
 
 
 
-## Distro Chooser
+## Knowledge Check
 
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
+Now time to test your knowledge! We have prepared a comprehensive quiz about everything you've just read, enjoy!
 
-<DistroQuiz client:load />
-
-*(This \<DistroQuiz> is an example of a slightly more involved React component.)*
-
-Note that we expect a more involved output -- a real submission on Linux distros could, for example:
-
-- elaborate on each distro
-- highlight the differences between the distros' package managers and their commands
-- implement a terminal emulator sandbox that lets you input basic commands
-- implement something that shows the differences between a fixed-release and rolling-release model
+<PinQuiz client:load />
 
 ## References
 
