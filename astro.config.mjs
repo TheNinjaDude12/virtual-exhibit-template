@@ -5,7 +5,6 @@ import icon from 'astro-icon';
 
 export default defineConfig({
   integrations: [mdx(), react(), icon()],
-  site: 'https://jrgo7.github.io',
-  base: 'virtual-exhibit-template',
+  site: 'https://virtual-exhibit-template.onrender.com',
+  base: '/',
 });
-
