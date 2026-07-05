@@ -12,22 +12,11 @@ import UsbCModel from "../components/UsbCModel.jsx"
 import pinDiagram from "../assets/usbc-pin-diagram.png"
 import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
+import PinQuiz from "../components/PinQuiz.jsx"
 import DistroQuiz from "../components/DistroQuiz.jsx"
-import UsbDragQuiz from "../components/UsbDragQuiz.jsx"
+import UsbDragQuiz from "../components/UsbDragquiz.jsx"
 
 {/* Images have to be imported manually */}
-
-import cachyos from "../assets/CachyOS.png"
-import debian from "../assets/Debian.png"
-import endeavour from "../assets/Endeavour.png"
-import fedora from "../assets/Fedora.png"
-import manjaro from "../assets/Manjaro.png"
-import mint from "../assets/Mint.png"
-import mxlinux from "../assets/MX-Linux.png"
-import popos from "../assets/PopOS.png"
-import ubuntu from "../assets/Ubuntu.png"
-import zorin from "../assets/Zorin.png"
-import tux from "../assets/Tux.png"
 
 import usbA from "../assets/usbA.png"
 import usbB from "../assets/usbB.png"
@@ -35,99 +24,6 @@ import usbC from "../assets/usbC.png"
 import microUsb from "../assets/microUsb.png"
 
 {/* Used for the ImageGallery component */}
-
-export const photos = [
-  {
-    id: 1,
-    title: "Debian",
-    tagline: "The universal operating system",
-    author: "Ian Murdock",
-    year: 1993,
-    img: debian.src,
-    url: "https://www.debian.org",
-  },
-  {
-    id: 2,
-    title: "Fedora",
-    tagline: "Freedom. Friends. Features. First.",
-    author: "Fedora Project (Red Hat)",
-    year: 2003,
-    img: fedora.src,
-    url: "https://fedoraproject.org",
-  },
-  {
-    id: 3,
-    title: "Ubuntu",
-    tagline: "Linux for human beings",
-    author: "Canonical Ltd.",
-    year: 2004,
-    img: ubuntu.src,
-    url: "https://ubuntu.com",
-  },
-  {
-    id: 4,
-    title: "Linux Mint",
-    tagline: "From freedom came elegance",
-    author: "Clément Lefèbvre",
-    year: 2006,
-    img: mint.src,
-    url: "https://linuxmint.com",
-  },
-  {
-    id: 5,
-    title: "Zorin OS",
-    tagline: "Make your computer better",
-    author: "Artyom & Kyrill Zorin",
-    year: 2009,
-    img: zorin.src,
-    url: "https://zorin.com/os/",
-  },
-  {
-    id: 6,
-    title: "Manjaro",
-    tagline: "Enjoy the simplicity",
-    author: "Manjaro GmbH & Co. KG",
-    year: 2011,
-    img: manjaro.src,
-    url: "https://manjaro.org",
-  },
-  {
-    id: 7,
-    title: "MX Linux",
-    tagline: "Simple, stable, and lightweight",
-    author: "antiX & former MEPIS communities",
-    year: 2014,
-    img: mxlinux.src,
-    url: "https://mxlinux.org",
-  },
-  {
-    id: 8,
-    title: "Pop!_OS",
-    tagline: "You're in Control",
-    author: "System76",
-    year: 2017,
-    img: popos.src,
-    url: "https://pop.system76.com",
-  },
-  {
-    id: 9,
-    title: "EndeavourOS",
-    tagline: "Start your Endeavour",
-    author: "EndeavourOS Team",
-    year: 2019,
-    img: endeavour.src,
-    url: "https://endeavouros.com",
-  },
-  {
-    id: 10,
-    title: "CachyOS",
-    tagline: "Performance-First Linux",
-    author: "Peter Jung",
-    year: 2021,
-    img: cachyos.src,
-    url: "https://cachyos.org",
-  },
-];
 
 {/* Actual content */}
 
@@ -148,19 +44,14 @@ export const photos = [
 ## USB-C Pin Diagram
 <UsbCPinDiagram imageSrc={pinDiagram.src} client:load />
 
-## Distro Chooser
+## Knowledge Check
 
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
+Now time to test your knowledge! We have prepared a comprehensive quiz about everything you've just read, enjoy!
 
-<DistroQuiz client:load />
+<PinQuiz client:load />
 
 ## USB Type Quiz
 
 Think you know your USB connectors? Drag each description to the correct USB type!
 
 <UsbDragQuiz images={{ usbA, usbB, usbC, microUsb }} client:load />
-
-## References
-
-- Distro images retrieved from https://www.tecmint.com/top-most-popular-linux-distributions/
-- Tux image retrieved from https://en.wikipedia.org/wiki/Tux_(mascot)#/media/File:Tux.svg

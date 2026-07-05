@@ -460,7 +460,7 @@ export default function DistroQuiz() {
           </div>
 
           <button style={styles.nextBtn(true)} onClick={handleRestart}>
-            ↺ Retake quiz
+            ↺ Retake quiz 
           </button>
         </div>
       )}
