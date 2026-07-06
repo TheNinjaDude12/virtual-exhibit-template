@@ -1,23 +1,23 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const QUESTIONS = [
   {
     id: 1,
-    description: "You can tell a USB-C port’s capabilities from its physical appearance, much like how USB-A ports are color-coded.",
+    description: "You can tell a USB-C port's capabilities from its physical appearance, much like how USB-A ports are color-coded.",
     answer: false,
-    explanation: "A USB-C port refers only to the physical form of the port itself; to know what a specific port’s specification is, you’d need to consult the hardware manual of the device."
+    explanation: "A USB-C port refers only to the physical form of the port itself; to know what a specific port's specification is, you'd need to consult the hardware manual of the device."
   },
   {
     id: 2,
-    description: "All Thunderbolt ports are USB-C ports, but not all USB-C ports are Thunderbolt ports",
+    description: "All Thunderbolt ports are USB-C ports, but not all USB-C ports are Thunderbolt ports.",
     answer: true,
-    explanation: "Thunderbolt ports are a specific designation of USB-C ports tailored to high performance, capable of high-speed data transfer, and connected directly to a device’s PCIe lanes."
+    explanation: "Thunderbolt ports are a specific designation of USB-C ports tailored to high performance, capable of high-speed data transfer, and connected directly to a device's PCIe lanes."
   },
   {
     id: 3,
     description: "Much like USB-A, USB-C still follows the standard USB specification with the exception of USB4, which is exclusive to USB-C.",
     answer: true,
-    explanation: "The last shared specification between the two ports was USB 3.2; however, in 2019, USB4 was introduced and developed solely for the USB-C port; however, it is still backwards compatible with older USB 3.0 and 2.0 ports."
+    explanation: "The last shared specification between the two ports was USB 3.2; however, in 2019, USB4 was introduced and developed solely for the USB-C port; it is still backwards compatible with older USB 3.0 and 2.0 ports."
   },
   {
     id: 4,
@@ -31,31 +31,26 @@ const QUESTIONS = [
     answer: false,
     explanation: "USB-C is capable of digital audio in and out."
   },
-
 ];
 
-export default function UsbTrueOrFalseQuiz({ images }) {
+export default function UsbTrueOrFalseQuiz() {
   const [currentQ, setCurrentQ] = useState(0);
-  const [result, setResult] = useState(null); // "correct" | "wrong"
+  const [result, setResult] = useState(null);
   const [score, setScore] = useState(0);
   const [done, setDone] = useState(false);
-  const [wrongAnswer, setWrongAnswer] = useState(null);
-  const [hoveredBtn, setHoveredBtn] = useState(false); // For styling
+  const [hoveredBtn, setHoveredBtn] = useState(null);
 
   const question = QUESTIONS[currentQ];
 
-  const resolveImg = (usbId) => {
-    if (images && images[usbId]) {
-      const img = images[usbId];
-      return typeof img === "string" ? img : img?.src ?? String(img);
-    }
-    return `/src/assets/${usbId}.png`;
+  const handleAnswer = (answer) => {
+    if (result) return;
+    const isCorrect = answer === question.answer;
+    setResult(isCorrect ? "correct" : "wrong");
+    if (isCorrect) setScore(s => s + 1);
   };
-
 
   const handleNext = () => {
     setResult(null);
-    setWrongAnswer(null);
     if (currentQ + 1 >= QUESTIONS.length) {
       setDone(true);
     } else {
@@ -67,34 +62,12 @@ export default function UsbTrueOrFalseQuiz({ images }) {
     setCurrentQ(0);
     setScore(0);
     setResult(null);
-    setWrongAnswer(null);
     setDone(false);
   };
 
-  function checkCorrectAnswer(e, answer){
-
-    e.preventDefault();
-
-    const isCorrect = answer === question.answer
-    setResult(isCorrect ? "correct" : "wrong")
-
-    if (isCorrect) 
-        setScore(s => s + 1);
-    else
-        setWrongAnswer(dropped);
-
-  }
-
-
   if (done) {
     return (
-      <div style={{
-        background: "#111116",
-        borderRadius: "16px",
-        padding: "40px 32px",
-        textAlign: "center",
-        fontFamily: "var(--font-sans)",
-      }}>
+      <div style={{ background: "#111116", borderRadius: "16px", padding: "40px 32px", textAlign: "center", fontFamily: "var(--font-sans)" }}>
         <div style={{ fontSize: "48px", marginBottom: "12px" }}>
           {score === QUESTIONS.length ? "🎉" : score >= QUESTIONS.length / 2 ? "👍" : "📚"}
         </div>
@@ -102,25 +75,9 @@ export default function UsbTrueOrFalseQuiz({ images }) {
           {score} / {QUESTIONS.length}
         </div>
         <div style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", marginBottom: "28px" }}>
-          {score === QUESTIONS.length
-            ? "Perfect score! You know your way around true or false statements!."
-            : score >= QUESTIONS.length / 2
-            ? "Good effort! Review the ones you missed."
-            : "Keep studying — Try to study the correct information!"}
+          {score === QUESTIONS.length ? "Perfect score! You know your USB-C facts." : score >= QUESTIONS.length / 2 ? "Good effort! Review the ones you missed." : "Keep studying — try to read the explanations carefully!"}
         </div>
-        <button
-          onClick={handleRestart}
-          style={{
-            background: "#378ADD",
-            color: "#fff",
-            border: "none",
-            borderRadius: "10px",
-            padding: "12px 28px",
-            fontSize: "14px",
-            fontWeight: "600",
-            cursor: "pointer",
-          }}
-        >
+        <button onClick={handleRestart} style={{ background: "#378ADD", color: "#fff", border: "none", borderRadius: "10px", padding: "12px 28px", fontSize: "14px", fontWeight: "600", cursor: "pointer" }}>
           Try again
         </button>
       </div>
@@ -128,169 +85,110 @@ export default function UsbTrueOrFalseQuiz({ images }) {
   }
 
   return (
-    <div style={{
-      background: "#111116",
-      borderRadius: "16px",
-      padding: "28px 24px",
-      fontFamily: "var(--font-sans)",
-    }}>
-        {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "6px" }}>
-            <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
-            Question {currentQ + 1} of {QUESTIONS.length}
-            </span>
-            <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
-            Score: {score}
-            </span>
-        </div>
+    <div style={{ background: "#111116", borderRadius: "16px", padding: "28px 24px", fontFamily: "var(--font-sans)" }}>
 
-        {/* Progress bar */}
-        <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: "99px", height: "4px", marginBottom: "24px" }}>
-            <div style={{
-            background: "#378ADD",
-            height: "4px",
-            borderRadius: "99px",
-            width: `${((currentQ) / QUESTIONS.length) * 100}%`,
-            transition: "width 0.3s ease",
-            }} />
-        </div>
+      {/* Header - pin quiz style */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "20px" }}>
+        <span style={{ fontSize: "12px", letterSpacing: "0.1em", color: "#5EEAD4", fontFamily: "'JetBrains Mono', monospace", textTransform: "uppercase" }}>
+          Question {currentQ + 1} / {QUESTIONS.length}
+        </span>
+        <span style={{ fontSize: "12px", color: "#6B7280", fontFamily: "'JetBrains Mono', monospace" }}>
+          score {score}
+        </span>
+      </div>
 
-        {/* Instruction */}
+      {/* Progress bar - pin quiz style */}
+      <div style={{ display: "flex", gap: "3px", marginBottom: "24px" }}>
+        {QUESTIONS.map((_, i) => (
+          <div key={i} style={{
+            flex: 1, height: "3px", borderRadius: "2px",
+            background: i < currentQ ? "#5EEAD4" : i === currentQ ? "#2A2F3A" : "#1A1E27",
+          }} />
+        ))}
+      </div>
+
+      {/* Fixed height content */}
+      <div style={{ minHeight: "360px" }}>
         <div style={{ fontSize: "11px", fontWeight: "600", letterSpacing: "0.08em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: "10px" }}>
-            True or False Quiz
+          True or False Quiz
         </div>
         <div style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "6px" }}>
-            Determine if the statement below is true or false.
+          Determine if the statement below is true or false.
         </div>
         <div style={{
-            fontSize: "14px",
-            color: "rgba(255,255,255,0.6)",
-            lineHeight: "1.6",
-            marginBottom: "28px",
-            padding: "14px 16px",
-            background: "rgba(255,255,255,0.04)",
-            borderRadius: "10px",
-            borderLeft: `3px solid ${"#378ADD"}`,
+          fontSize: "14px", color: "rgba(255,255,255,0.6)", lineHeight: "1.6",
+          marginBottom: "28px", padding: "14px 16px",
+          background: "rgba(255,255,255,0.04)", borderRadius: "10px",
+          borderLeft: "3px solid #378ADD", minHeight: "72px",
         }}>
-            {question.description}
+          {question.description}
         </div>
 
-
-        {/* True and False Buttons */}
-        <div style = {{display: "flex", gap: "14px", marginBottom: "16px"}}>
-
-            <button onClick = {(e) => checkCorrectAnswer(e, true)}  
-            
-            disabled = {result}
-            onMouseEnter = {() => setHoveredBtn("true")}
-            onMouseLeave = {() => setHoveredBtn(null)}
-
+        {/* True / False buttons */}
+        <div style={{ display: "flex", gap: "14px", marginBottom: "16px" }}>
+          <button
+            onClick={() => handleAnswer(true)}
+            disabled={!!result}
+            onMouseEnter={() => setHoveredBtn("true")}
+            onMouseLeave={() => setHoveredBtn(null)}
             style={{
-            flex: 1,
-            fontSize: "15px",
-            fontWeight: "bold",
-            color: "#1D9E75",
-            lineHeight: "1.6",
-            padding: "10px 0px",
-            background: hoveredBtn === "true" ? "rgba(66, 65, 65, 0.41)" : "rgba(255,255,255,0.04)",
-            borderRadius: "10px",
-            cursor: result ? "not-allowed" : "pointer",
-            transition: "all 0.15s ease"
-            }}>True</button>
-
-            <button onClick = {(e) => checkCorrectAnswer(e, false)} 
-            
-            disabled = {result}
-            onMouseEnter = {() => setHoveredBtn("false")}
-            onMouseLeave = {() => setHoveredBtn(null)}
-            
-            style={{
-            flex: 1,
-            fontSize: "15px",
-            fontWeight: "bold",
-            color: "#D85A30",
-            lineHeight: "1.6",
-            padding: "10px 0px",
-            background: hoveredBtn === "false" ? "rgba(66, 65, 65, 0.41)" : "rgba(255,255,255,0.04)",
-            borderRadius: "10px",
-            cursor: result ? "not-allowed" : "pointer",
-            transition: "all 0.15s ease"
-            }}>False</button>
-
-        </div>
-
-
-        {/* Result */}
-
-        {result &&
-            <div
-                style={{
-                border: result === "correct"
-                    ? "2px solid #1D9E75"
-                    : "2px solid #D85A30",
-                borderRadius: "14px",
-                padding: "24px 16px",
-                textAlign: "center",
-                background: result === "correct"
-                    ? "rgba(29,158,117,0.08)"
-                    : "rgba(216,90,48,0.08)",
-                transition: "all 0.15s ease",
-                marginTop: "16px",
-                minHeight: "80px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "6px",
-                }}
-            >
-                {result === "correct" && (
-                <>
-                    <div style={{ fontSize: "22px" }}>✅</div>
-                    <div style={{ fontSize: "14px", fontWeight: "600", color: "#1D9E75" }}>Correct!</div>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>
-                    Good job! You got it right!
-                    </div>
-                </>
-                )}
-                {result === "wrong" && (
-                <>
-                    <div style={{ fontSize: "22px" }}>❌</div>
-                    <div style={{ fontSize: "14px", fontWeight: "600", color: "#D85A30" }}>Not quite!</div>
-                    <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)" }}>
-                    {question.explanation}
-                    </div>
-                </>
-                )}
-            </div>
-        }
-
-
-
-        {/* Next button */}
-        {result && (
-            <button
-            onClick={handleNext}
-            style={{
-                width: "100%",
-                background: result === "correct" ? "#1D9E75" : "#378ADD",
-                color: "#fff",
-                border: "none",
-                borderRadius: "10px",
-                padding: "13px",
-                fontSize: "14px",
-                fontWeight: "600",
-                cursor: "pointer",
-                transition: "opacity 0.15s",
-                marginTop: "16px"
+              flex: 1, fontSize: "15px", fontWeight: "bold", color: "#1D9E75",
+              padding: "10px 0", background: hoveredBtn === "true" ? "rgba(29,158,117,0.15)" : "rgba(255,255,255,0.04)",
+              borderRadius: "10px", border: result && question.answer === true ? "1.5px solid #1D9E75" : "1.5px solid rgba(255,255,255,0.08)",
+              cursor: result ? "not-allowed" : "pointer", transition: "all 0.15s ease",
             }}
-            onMouseEnter={e => e.target.style.opacity = "0.85"}
-            onMouseLeave={e => e.target.style.opacity = "1"}
-            >
-            {currentQ + 1 >= QUESTIONS.length ? "See results →" : "Next question →"}
-            </button>
-        )}
+          >True</button>
+          <button
+            onClick={() => handleAnswer(false)}
+            disabled={!!result}
+            onMouseEnter={() => setHoveredBtn("false")}
+            onMouseLeave={() => setHoveredBtn(null)}
+            style={{
+              flex: 1, fontSize: "15px", fontWeight: "bold", color: "#D85A30",
+              padding: "10px 0", background: hoveredBtn === "false" ? "rgba(216,90,48,0.15)" : "rgba(255,255,255,0.04)",
+              borderRadius: "10px", border: result && question.answer === false ? "1.5px solid #D85A30" : "1.5px solid rgba(255,255,255,0.08)",
+              cursor: result ? "not-allowed" : "pointer", transition: "all 0.15s ease",
+            }}
+          >False</button>
+        </div>
 
+        {/* Result box - fixed height so it doesn't shift */}
+        <div style={{ height: "110px" }}>
+          {result && (
+            <div style={{
+              border: result === "correct" ? "2px solid #1D9E75" : "2px solid #D85A30",
+              borderRadius: "14px", padding: "14px 16px", height: "100%",
+              background: result === "correct" ? "rgba(29,158,117,0.08)" : "rgba(216,90,48,0.08)",
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
+            }}>
+              <div style={{ fontSize: "20px" }}>{result === "correct" ? "✅" : "❌"}</div>
+              <div style={{ fontSize: "14px", fontWeight: "600", color: result === "correct" ? "#1D9E75" : "#D85A30" }}>
+                {result === "correct" ? "Correct!" : "Not quite!"}
+              </div>
+              <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.5)", textAlign: "center", lineHeight: "1.5" }}>
+                {result === "correct" ? "Good job! You got it right!" : question.explanation}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Next button */}
+      {result && (
+        <button
+          onClick={handleNext}
+          style={{
+            width: "100%", marginTop: "16px",
+            background: result === "correct" ? "#1D9E75" : "#378ADD",
+            color: "#fff", border: "none", borderRadius: "10px",
+            padding: "13px", fontSize: "14px", fontWeight: "600", cursor: "pointer",
+          }}
+          onMouseEnter={e => e.target.style.opacity = "0.85"}
+          onMouseLeave={e => e.target.style.opacity = "1"}
+        >
+          {currentQ + 1 >= QUESTIONS.length ? "See results →" : "Next question →"}
+        </button>
+      )}
     </div>
   );
 }
