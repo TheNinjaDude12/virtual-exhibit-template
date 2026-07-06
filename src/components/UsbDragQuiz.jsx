@@ -222,7 +222,7 @@ export default function UsbDragQuiz({ images }) {
         padding: "14px 16px",
         background: "rgba(255,255,255,0.04)",
         borderRadius: "10px",
-        borderLeft: `3px solid ${correctType?.color ?? "#378ADD"}`,
+        borderLeft: `3px solid #378ADD`,
       }}>
         {question.characteristic}
       </div>
