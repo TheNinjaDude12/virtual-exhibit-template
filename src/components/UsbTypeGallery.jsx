@@ -107,7 +107,7 @@ export default function UsbTypeGallery({ images }) {
   const type = USB_TYPES[selected];
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)" }}>
+    <div style={{ fontFamily: "var(--font-sans)", width: "100%" }}>
       {/* Tab selector */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px", marginBottom: "16px" }}>
         {USB_TYPES.map((t, i) => (
@@ -127,16 +127,8 @@ export default function UsbTypeGallery({ images }) {
               transition: "all 0.15s",
             }}
           >
-            <img
-              src={resolveImg(t.id)}
-              alt={t.name}
-              style={{ width: "48px", height: "36px", objectFit: "contain" }}
-            />
-            <span style={{
-              fontSize: "12px",
-              fontWeight: "600",
-              color: selected === i ? t.color : "var(--color-text-secondary)",
-            }}>
+            <img src={resolveImg(t.id)} alt={t.name} style={{ width: "48px", height: "36px", objectFit: "contain" }} />
+            <span style={{ fontSize: "12px", fontWeight: "600", color: selected === i ? t.color : "var(--color-text-secondary)" }}>
               {t.name}
             </span>
           </button>
@@ -145,11 +137,15 @@ export default function UsbTypeGallery({ images }) {
 
       {/* Detail card */}
       <div style={{
-    borderRadius: "14px",
-    border: `1.5px solid ${type.color}44`,
-    overflow: "hidden",
-    minHeight: "420px",
-    }}>
+        width: "100%",
+        boxSizing: "border-box",
+        borderRadius: "14px",
+        border: `1.5px solid ${type.color}44`,
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        height: "560px",
+      }}>
         {/* Header */}
         <div style={{
           background: `${type.color}18`,
@@ -158,51 +154,54 @@ export default function UsbTypeGallery({ images }) {
           display: "flex",
           alignItems: "center",
           gap: "20px",
+          flexShrink: 0,
         }}>
-          <img
-            src={resolveImg(type.id)}
-            alt={type.name}
-            style={{ width: "80px", height: "60px", objectFit: "contain" }}
-          />
-          <div>
+          <img src={resolveImg(type.id)} alt={type.name} style={{ width: "80px", height: "60px", objectFit: "contain", flexShrink: 0 }} />
+          <div style={{ minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
               <span style={{
                 background: type.color,
                 color: type.id === "usbC" ? "#1a1200" : "#fff",
-                fontSize: "11px",
-                fontWeight: "700",
-                padding: "2px 10px",
-                borderRadius: "99px",
+                fontSize: "11px", fontWeight: "700",
+                padding: "2px 10px", borderRadius: "99px",
+                whiteSpace: "nowrap",
               }}>{type.name}</span>
             </div>
             <div style={{ fontSize: "20px", fontWeight: "700", color: "var(--color-text-primary)" }}>{type.tagline}</div>
           </div>
         </div>
 
-        <div style={{ padding: "20px 24px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+        {/* Specs + Characteristics */}
+        <div style={{
+          flex: 1,
+          overflow: "auto",
+          padding: "20px 24px",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "24px",
+          boxSizing: "border-box",
+        }}>
           {/* Specs */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "0.08em", color: "var(--color-text-tertiary)", textTransform: "uppercase", marginBottom: "12px" }}>
               Specifications
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {type.specs.map(s => (
                 <div key={s.label} style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "baseline",
-                  padding: "6px 0",
-                  borderBottom: "0.5px solid var(--color-border-tertiary)",
+                  display: "flex", justifyContent: "space-between", alignItems: "baseline",
+                  padding: "6px 0", borderBottom: "0.5px solid var(--color-border-tertiary)",
+                  gap: "8px",
                 }}>
-                  <span style={{ fontSize: "12px", color: "var(--color-text-tertiary)" }}>{s.label}</span>
-                  <span style={{ fontSize: "13px", fontWeight: "500", color: "var(--color-text-primary)" }}>{s.value}</span>
+                  <span style={{ fontSize: "12px", color: "var(--color-text-tertiary)", flexShrink: 0 }}>{s.label}</span>
+                  <span style={{ fontSize: "13px", fontWeight: "500", color: "var(--color-text-primary)", textAlign: "right" }}>{s.value}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Characteristics */}
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div style={{ fontSize: "11px", fontWeight: "700", letterSpacing: "0.08em", color: "var(--color-text-tertiary)", textTransform: "uppercase", marginBottom: "12px" }}>
               Key Characteristics
             </div>
@@ -224,6 +223,8 @@ export default function UsbTypeGallery({ images }) {
           background: `${type.color}12`,
           borderLeft: `3px solid ${type.color}`,
           borderRadius: "0 8px 8px 0",
+          flexShrink: 0,
+          boxSizing: "border-box",
         }}>
           <span style={{ fontSize: "11px", fontWeight: "700", color: type.color, textTransform: "uppercase", letterSpacing: "0.06em" }}>Did you know? </span>
           <span style={{ fontSize: "12px", color: "var(--color-text-secondary)", lineHeight: "1.5" }}>{type.funFact}</span>

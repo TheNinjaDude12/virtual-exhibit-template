@@ -146,16 +146,27 @@ export default function UsbMultipleChoiceQuiz() {
 
   return (
     <div style={WRAP}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>Question {currentQ + 1} of {QUESTIONS.length}</span>
-        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}>Score: {score}</span>
+      {/* Header - pin quiz style */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "20px" }}>
+        <span style={{ fontSize: "12px", letterSpacing: "0.1em", color: "#5EEAD4", fontFamily: "'JetBrains Mono', monospace", textTransform: "uppercase" }}>
+          Question {currentQ + 1} / {QUESTIONS.length}
+        </span>
+        <span style={{ fontSize: "12px", color: "#6B7280", fontFamily: "'JetBrains Mono', monospace" }}>
+          score {score}
+        </span>
       </div>
-      <div style={{ background: "rgba(255,255,255,0.08)", borderRadius: "99px", height: "4px", marginBottom: "20px" }}>
-        <div style={{
-          background: "#378ADD", height: "4px", borderRadius: "99px",
-          width: `${(currentQ / QUESTIONS.length) * 100}%`, transition: "width 0.3s ease",
-        }} />
+
+      {/* Progress bar - pin quiz style */}
+      <div style={{ display: "flex", gap: "3px", marginBottom: "20px" }}>
+        {QUESTIONS.map((_, i) => (
+          <div key={i} style={{
+            flex: 1, height: "3px", borderRadius: "2px",
+            background: i < currentQ ? "#5EEAD4" : i === currentQ ? "#2A2F3A" : "#1A1E27",
+          }} />
+        ))}
       </div>
+
+      <div style={{ minHeight: "380px" }}>
 
       <div style={{
         fontSize: "16px", fontWeight: "600", color: "#fff", lineHeight: "1.5",
@@ -230,6 +241,8 @@ export default function UsbMultipleChoiceQuiz() {
           </div>
         </div>
       )}
+
+      </div>
 
       {selected && (
         <button onClick={handleNext} style={{
