@@ -12,9 +12,13 @@ import UsbCModel from "../components/UsbCModel.jsx"
 import pinDiagram from "../assets/usbc-pin-diagram.png"
 import UsbCPinDiagram from "../components/UsbCPinDiagram.jsx"
 import ImageGallery from '../components/ImageGallery.jsx';
+import PinQuiz from "../components/PinQuiz.jsx";
 import DistroQuiz from "../components/DistroQuiz.jsx"
 import UsbDragQuiz from "../components/UsbDragQuiz.jsx"
 import UsbTrueOrFalseQuiz from "../components/UsbTrueOrFalseQuiz.jsx"
+import UsbTypeGallery from "../components/UsbTypeGallery.jsx"
+import UsbMultipleChoiceQuiz from "../components/UsbMultipleChoiceQuiz.jsx"
+
 
 {/* Images have to be imported manually */}
 
@@ -148,12 +152,21 @@ export const photos = [
 
 ## USB-C Pin Diagram
 <UsbCPinDiagram imageSrc={pinDiagram.src} client:load />
+## USB Types
+<UsbTypeGallery images={{ usbA, usbB, usbC, microUsb }} client:load />
 
-## Distro Chooser
+Get ready to test your knowledge with our various quizzes
+## USB-C Knowledge Check
 
-Want to see which distro fits you the best? If you're new to Linux or are thinking of switching from another distro, try out the following Distro Quiz!
+<UsbMultipleChoiceQuiz client:load />
+## USB True or False Quiz
 
-<DistroQuiz client:load />
+Test to see if you can determine the real or fake information about USB-C's. Click either true or false for each question!
+
+<UsbTrueOrFalseQuiz images={{}} client:load />
+
+## Pin Quiz
+<PinQuiz client:load />
 
 ## USB Type Quiz
 
@@ -161,15 +174,27 @@ Think you know your USB connectors? Drag each description to the correct USB typ
 
 <UsbDragQuiz images={{ usbA, usbB, usbC, microUsb }} client:load />
 
-## USB True or False Quiz
 
-Test to see if you can determine the real or fake information about USB-C's. Click either true or false for each question!
-
-<UsbTrueOrFalseQuiz images={{}} client:load />
 
 
 
 ## References
 
-- Distro images retrieved from https://www.tecmint.com/top-most-popular-linux-distributions/
-- Tux image retrieved from https://en.wikipedia.org/wiki/Tux_(mascot)#/media/File:Tux.svg
+### Images
+- USB-A cable image — [Cable Matters via TiendaMia](https://tiendamia.com.ar/p/amz/b00hss9lei/cable-matters-5gbps-long-usb-3-0-cable-15ft-male)
+- USB-B cable image — [Engine DJ Community](https://community.enginedj.com/t/can-i-use-a-printer-cable-to-connect-prime-4-to-a-device/20844)
+- USB-C cable image — [RS Online Philippines](https://ph.rs-online.com/web/p/usb-cables/2873441)
+- Micro USB cable image — [Walmart Canada via Proxicast](https://www.walmart.ca/en/ip/Proxicast-Premium-8mm-Extra-Long-Tip-USB-2-0-Micro-USB-Male-to-USB-A-Male-Cable-6-ft-Length-Heavy-22-AWG-Gauge/1698M2VUIBYY)
+- USB-C pin diagram — [Electronics Stack Exchange](https://electronics.stackexchange.com/questions/291413/usb-c-to-usb-a-pinout)
+
+### Video
+- "Explained: What Is USB-C?" — [PCMag via YouTube](https://www.youtube.com/watch?v=2gTxzAh7f1M)
+
+### USB Specifications & Characteristics
+- USB-A, USB-B, USB-C, and Micro USB specifications — [USB Implementers Forum (USB-IF)](https://www.usb.org/documents)
+- USB Power Delivery 3.1 (240W) — [USB-IF USB PD Specification](https://www.usb.org/usb-charger-pd)
+- USB4 and Thunderbolt 4 speeds — [USB-IF USB4 Specification](https://www.usb.org/usb4)
+- EU USB-C mandate (2022) — [European Parliament Press Release](https://www.europarl.europa.eu/news/en/press-room/20220930IPR41928/long-awaited-common-charger-for-mobile-devices-will-be-a-reality-in-2024)
+- USB-C pin assignments and CC pin behavior — [Electronics Stack Exchange](https://electronics.stackexchange.com/questions/291413/usb-c-to-usb-a-pinout)
+- USB-C Alt Mode (DisplayPort, HDMI) — [VESA DisplayPort Alt Mode Standard](https://www.displayport.org/displayport-over-usb-c/)
+- Micro USB history and specification — [USB Implementers Forum (USB-IF)](https://www.usb.org/documents)
