@@ -65,6 +65,10 @@ For now we are pleased with the current state of our website and feel it is refi
 
 For now these are our current goals:
 
-Fix the minute page size changes that occur when browsing through the different USB types.
-Fine tune the model render aspect ratio so it is full view throughout the whole rotation.
+<ul>
+  <li>Fix the minute page size changes that occur when browsing through the different USB types.</li>
+  <li>Fine tune the model render aspect ratio so it is full view throughout the whole rotation.</li>
+</ul>
+
+
 
