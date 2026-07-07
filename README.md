@@ -1,5 +1,5 @@
 # A USB (C)omplete guide and deep dive
-[Website Link](https://virtual-exhibit-template.onrender.com/usb)
+[Website Link](https://virtual-exhibit-template.onrender.com/usb)\
 [Development Documentation](#incremental-documentation)
 
 ## Member Roster:
