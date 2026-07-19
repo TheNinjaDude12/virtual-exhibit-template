@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import "../styles/usb-exhibit.css";
 
 const USB_TYPES = [
   { id: "usbA",     name: "USB-A",     img: "/src/assets/usbA.png",     color: "#378ADD" },
@@ -68,7 +69,7 @@ export default function UsbDragQuiz({ images }) {
 
   if (done) {
     return (
-      <div style={{ background: "#111116", borderRadius: "16px", padding: "40px 32px", textAlign: "center", fontFamily: "var(--font-sans)" }}>
+      <div className="usb-exhibit-wrap" style={{ background: "#111116", borderRadius: "16px", padding: "40px 32px", textAlign: "center", fontFamily: "var(--font-sans)", width: "100%", minWidth: 0, alignSelf: "stretch", boxSizing: "border-box" }}>
         <div style={{ fontSize: "48px", marginBottom: "12px" }}>
           {score === QUESTIONS.length ? "🎉" : score >= QUESTIONS.length / 2 ? "👍" : "📚"}
         </div>
@@ -84,7 +85,7 @@ export default function UsbDragQuiz({ images }) {
   }
 
   return (
-    <div style={{ background: "#111116", borderRadius: "16px", padding: "28px 24px", fontFamily: "var(--font-sans)" }}>
+    <div className="usb-exhibit-wrap" style={{ background: "#111116", borderRadius: "16px", padding: "28px 24px", fontFamily: "var(--font-sans)", width: "100%", minWidth: 0, alignSelf: "stretch", boxSizing: "border-box" }}>
       {/* Header - pin quiz style */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "20px" }}>
         <span style={{ fontSize: "12px", letterSpacing: "0.1em", color: "#5EEAD4", fontFamily: "'JetBrains Mono', monospace", textTransform: "uppercase" }}>
@@ -118,12 +119,13 @@ export default function UsbDragQuiz({ images }) {
           marginBottom: "28px", padding: "14px 16px",
           background: "rgba(255,255,255,0.04)", borderRadius: "10px",
           borderLeft: "3px solid #378ADD", minHeight: "72px",
+          width: "100%", boxSizing: "border-box", overflowWrap: "break-word",
         }}>
           {question.characteristic}
         </div>
 
         {/* USB options */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "24px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "12px", marginBottom: "24px", width: "100%", boxSizing: "border-box" }}>
           {USB_TYPES.map((usb) => {
             const isCorrectAndShown = result === "correct" && usb.id === question.answer;
             const isWrong = result === "wrong" && usb.id === wrongAnswer;

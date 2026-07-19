@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/usb-exhibit.css";
 
 const USB_TYPES = [
   {
@@ -107,7 +108,7 @@ export default function UsbTypeGallery({ images }) {
   const type = USB_TYPES[selected];
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", width: "100%" }}>
+    <div className="usb-exhibit-wrap" style={{ fontFamily: "var(--font-sans)", width: "100%", minWidth: 0, boxSizing: "border-box" }}>
       {/* Tab selector */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px", marginBottom: "16px" }}>
         {USB_TYPES.map((t, i) => (
@@ -138,13 +139,14 @@ export default function UsbTypeGallery({ images }) {
       {/* Detail card */}
       <div style={{
         width: "100%",
+        minWidth: 0,
         boxSizing: "border-box",
         borderRadius: "14px",
         border: `1.5px solid ${type.color}44`,
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        height: "560px",
+        height: "600px",
       }}>
         {/* Header */}
         <div style={{
