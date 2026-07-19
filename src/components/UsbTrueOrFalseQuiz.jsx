@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/usb-exhibit.css";
 
 const QUESTIONS = [
   {
@@ -67,7 +68,11 @@ export default function UsbTrueOrFalseQuiz() {
 
   if (done) {
     return (
-      <div style={{ background: "#111116", borderRadius: "16px", padding: "40px 32px", textAlign: "center", fontFamily: "var(--font-sans)" }}>
+      <div className="usb-exhibit-wrap" style={{ 
+        background: "#111116", borderRadius: "16px", padding: "40px 32px", 
+        textAlign: "center", fontFamily: "var(--font-sans)", 
+        width: "100%", minWidth: 0, alignSelf: "stretch", boxSizing: "border-box" 
+      }}>
         <div style={{ fontSize: "48px", marginBottom: "12px" }}>
           {score === QUESTIONS.length ? "🎉" : score >= QUESTIONS.length / 2 ? "👍" : "📚"}
         </div>
@@ -85,9 +90,17 @@ export default function UsbTrueOrFalseQuiz() {
   }
 
   return (
-    <div style={{ background: "#111116", borderRadius: "16px", padding: "28px 24px", fontFamily: "var(--font-sans)" }}>
-
-      {/* Header - pin quiz style */}
+    <div className="usb-exhibit-wrap" style={{ 
+      background: "#111116", 
+      borderRadius: "16px", 
+      padding: "28px 24px", 
+      fontFamily: "var(--font-sans)", 
+      width: "1500px",
+      minWidth: 0,
+      alignSelf: "stretch", // This prevents the Astro layout from shrinking it
+      boxSizing: "border-box" 
+    }}>
+      {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "20px" }}>
         <span style={{ fontSize: "12px", letterSpacing: "0.1em", color: "#5EEAD4", fontFamily: "'JetBrains Mono', monospace", textTransform: "uppercase" }}>
           Question {currentQ + 1} / {QUESTIONS.length}
@@ -97,7 +110,7 @@ export default function UsbTrueOrFalseQuiz() {
         </span>
       </div>
 
-      {/* Progress bar - pin quiz style */}
+      {/* Progress bar */}
       <div style={{ display: "flex", gap: "3px", marginBottom: "24px" }}>
         {QUESTIONS.map((_, i) => (
           <div key={i} style={{
@@ -108,24 +121,32 @@ export default function UsbTrueOrFalseQuiz() {
       </div>
 
       {/* Fixed height content */}
-      <div style={{ minHeight: "360px" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", minWidth: 0, boxSizing: "border-box" }}>
         <div style={{ fontSize: "11px", fontWeight: "600", letterSpacing: "0.08em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", marginBottom: "10px" }}>
           True or False Quiz
         </div>
         <div style={{ fontSize: "16px", fontWeight: "600", color: "#fff", marginBottom: "6px" }}>
           Determine if the statement below is true or false.
         </div>
+        
+        {/* Fixed height question box */}
         <div style={{
           fontSize: "14px", color: "rgba(255,255,255,0.6)", lineHeight: "1.6",
           marginBottom: "28px", padding: "14px 16px",
           background: "rgba(255,255,255,0.04)", borderRadius: "10px",
-          borderLeft: "3px solid #378ADD", minHeight: "72px",
+          borderLeft: "3px solid #378ADD", 
+          height: "100px", 
+          width: "100%",
+          minWidth: 0,
+          boxSizing: "border-box",
+          overflowY: "auto",
+          overflowWrap: "break-word",
         }}>
           {question.description}
         </div>
 
         {/* True / False buttons */}
-        <div style={{ display: "flex", gap: "14px", marginBottom: "16px" }}>
+        <div style={{ display: "flex", gap: "14px", marginBottom: "16px", width: "100%" }}>
           <button
             onClick={() => handleAnswer(true)}
             disabled={!!result}
@@ -152,12 +173,12 @@ export default function UsbTrueOrFalseQuiz() {
           >False</button>
         </div>
 
-        {/* Result box - fixed height so it doesn't shift */}
-        <div style={{ height: "110px" }}>
+        {/* Result box - fixed height to stop vertical shifting */}
+        <div style={{ height: "110px", width: "100%", boxSizing: "border-box" }}>
           {result && (
             <div style={{
               border: result === "correct" ? "2px solid #1D9E75" : "2px solid #D85A30",
-              borderRadius: "14px", padding: "14px 16px", height: "100%",
+              borderRadius: "14px", padding: "14px 16px", height: "100%", boxSizing: "border-box",
               background: result === "correct" ? "rgba(29,158,117,0.08)" : "rgba(216,90,48,0.08)",
               display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px",
             }}>
@@ -173,22 +194,25 @@ export default function UsbTrueOrFalseQuiz() {
         </div>
       </div>
 
-      {/* Next button */}
-      {result && (
-        <button
-          onClick={handleNext}
-          style={{
-            width: "100%", marginTop: "16px",
-            background: result === "correct" ? "#1D9E75" : "#378ADD",
-            color: "#fff", border: "none", borderRadius: "10px",
-            padding: "13px", fontSize: "14px", fontWeight: "600", cursor: "pointer",
-          }}
-          onMouseEnter={e => e.target.style.opacity = "0.85"}
-          onMouseLeave={e => e.target.style.opacity = "1"}
-        >
-          {currentQ + 1 >= QUESTIONS.length ? "See results →" : "Next question →"}
-        </button>
-      )}
+      {/* Next button - reserved height container so it doesn't pop the bottom down */}
+      <div style={{ height: "45px", marginTop: "16px", width: "100%" }}>
+        {result && (
+          <button
+            onClick={handleNext}
+            style={{
+              width: "100%", height: "100%",
+              background: result === "correct" ? "#1D9E75" : "#378ADD",
+              color: "#fff", border: "none", borderRadius: "10px",
+              fontSize: "14px", fontWeight: "600", cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center"
+            }}
+            onMouseEnter={e => e.target.style.opacity = "0.85"}
+            onMouseLeave={e => e.target.style.opacity = "1"}
+          >
+            {currentQ + 1 >= QUESTIONS.length ? "See results →" : "Next question →"}
+          </button>
+        )}
+      </div>
     </div>
   );
 }
