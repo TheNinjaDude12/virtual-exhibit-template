@@ -73,3 +73,9 @@ For now these are our current goals:
 ### Final Submission (July 22, 2026)
 We have accomplished all our goals we set during the mid-milestone submission. The page size changing was addressed by just stretching out the page width and the model's view was addressed by allowing the user to zoom in and out of the rotating model. We are pleased with the outcome of the website and believe it is ready for submission into the virtual museum.
 
+## AI Usage Disclosure
+The contributors of this Github repo made use of AI in the development of the following aspects:
+<ul>
+  <li>Styling of the interactive quiz sections.</li>
+  <li>Summarization and explanation of mdx and jsx syntax.</li>
+</ul>
