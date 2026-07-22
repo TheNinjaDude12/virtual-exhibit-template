@@ -9,7 +9,7 @@ Actualizing our proposal was also a bit of a hurdle as we all collectively were 
 
 Nevertheless we were able to finish our technical content and even finish half of our quizzes, some issues remain such as the rendered USB-C model not behaving properly on our deployed website vs locally on our computers. However we are optimistic we will address these issues as soon as possible.
 
-## (July 6, 2025)
+## (July 6, 2026)
 All our previous issues from yesterday have mostly been resolved. The model displays properly on our deployed website and we were able to plan and finish all our quizzes so our interactive elements have been completed for now.
 
 For now we are pleased with the current state of our website and feel it is refined enough to submit. We agreed on as a group to begin working on it again after both LBYARCH and CSARCH2 exams conclude by the end of the week.
@@ -20,3 +20,6 @@ For now these are our current goals:
   <li>Fix the minute page size changes that occur when browsing through the different USB types.</li>
   <li>Fine tune the model render aspect ratio so it is full view throughout the whole rotation.</li>
 </ul>
+
+## Final Submission (July 22, 2026)
+We have accomplished all our goals we set during the mid-milestone submission. The page size changing was addressed by just stretching out the page width and the model's view was addressed by allowing the user to zoom in and out of the rotating model. We are pleased with the outcome of the website and believe it is ready for submission into the virtual museum.
